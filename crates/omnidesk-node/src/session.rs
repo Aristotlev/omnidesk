@@ -103,6 +103,20 @@ async fn send(writer: &mut Writer, message: &Message) -> Result<(), NodeError> {
     Ok(writer.send(&bytes).await?)
 }
 
+/// Sends a last message and closes so that it is not lost. Closing a connection while the
+/// other side's data is still unread makes Windows reset it, which throws away what was just
+/// sent. So: send, half-close, read and discard until the other side hangs up (briefly), close.
+async fn send_and_close(mut reader: Reader, mut writer: Writer, message: &Message) {
+    if send(&mut writer, message).await.is_err() {
+        return;
+    }
+    writer.shutdown().await;
+    let _ = tokio::time::timeout(Duration::from_secs(2), async {
+        while reader.recv().await.is_ok() {}
+    })
+    .await;
+}
+
 async fn recv(reader: &mut Reader, wait: Duration) -> Result<Message, NodeError> {
     let bytes = tokio::time::timeout(wait, reader.recv())
         .await
@@ -183,13 +197,10 @@ async fn establish(
     match recv(&mut reader, PAIR_TIMEOUT).await? {
         Message::PairInit { spake } => {
             let Some(code) = inner.pairing_code() else {
-                let _ = send(
-                    &mut writer,
-                    &Message::PairReject {
-                        reason: REJECT_NOT_ACCEPTING.into(),
-                    },
-                )
-                .await;
+                let reject = Message::PairReject {
+                    reason: REJECT_NOT_ACCEPTING.into(),
+                };
+                send_and_close(reader, writer, &reject).await;
                 return Err(NodeError::NotAccepting);
             };
             let (attempt, reply) = pairing::start(
@@ -232,7 +243,7 @@ async fn establish(
                 Ok((reader, writer, peer, Some(first)))
             } else {
                 // A device that still lists this one as paired learns that it no longer is.
-                let _ = send(&mut writer, &Message::Unpaired).await;
+                send_and_close(reader, writer, &Message::Unpaired).await;
                 Err(NodeError::Interrupted)
             }
         }

@@ -197,6 +197,11 @@ impl<R: AsyncRead + Unpin> LinkReader<R> {
 }
 
 impl<W: AsyncWrite + Unpin> LinkWriter<W> {
+    /// Tells the other side nothing more is coming (TCP half-close). What was sent still arrives.
+    pub async fn shutdown(&mut self) {
+        let _ = self.io.shutdown().await;
+    }
+
     /// Sends one whole message, split into encrypted records of at most 64 KiB.
     pub async fn send(&mut self, payload: &[u8]) -> Result<(), LinkError> {
         if payload.len() > MAX_MESSAGE {
