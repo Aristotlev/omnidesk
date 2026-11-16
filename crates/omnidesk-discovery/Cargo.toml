@@ -1,0 +1,13 @@
+[package]
+name = "omnidesk-discovery"
+version.workspace = true
+license = "MIT"
+edition.workspace = true
+authors.workspace = true
+
+[dependencies]
+mdns-sd = "0.21.7"
+omnidesk-proto = { version = "0.1.0", path = "../omnidesk-proto" }
+thiserror = "2.0.21"
+tokio = { version = "1.54.1", features = ["sync", "rt"] }
+tracing = "0.1.44"

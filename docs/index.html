@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OmniDesk: every screen you own on one desk</title>
+  <meta name="description" content="See the screens of all your computers live, control any of them from the one you are at, and share copied text. Free for Windows, Mac and Linux." />
+  <link rel="icon" href="icon.png" />
+  <style>
+    :root { --bg: #0b1020; --surface: #121933; --border: #232c52; --text: #e8ebf5; --muted: #8b93b5; --primary: #6c8cff; --good: #2ed3b7; color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: radial-gradient(900px 500px at 15% -10%, rgba(108,140,255,.18), transparent 60%), radial-gradient(800px 500px at 100% 0%, rgba(46,211,183,.12), transparent 60%), var(--bg); color: var(--text); font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    main { max-width: 920px; margin: 0 auto; padding: 72px 24px 56px; }
+    .brand { display: flex; align-items: center; gap: 14px; font-weight: 700; font-size: 22px; }
+    .brand img { width: 52px; height: 52px; }
+    h1 { font-size: clamp(34px, 6vw, 54px); line-height: 1.08; letter-spacing: -1px; margin: 40px 0 16px; }
+    .lead { font-size: 19px; color: var(--muted); max-width: 640px; margin: 0 0 34px; }
+    .dl { display: flex; flex-wrap: wrap; gap: 12px; }
+    .dl a { display: inline-flex; align-items: center; gap: 8px; padding: 13px 20px; border-radius: 12px; background: var(--primary); color: #fff; font-weight: 650; text-decoration: none; }
+    .dl a.alt { background: var(--surface); border: 1px solid var(--border); color: var(--text); }
+    .small { color: var(--muted); font-size: 14px; margin-top: 14px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 64px; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 22px; }
+    .card h3 { margin: 0 0 6px; font-size: 17px; }
+    .card p { margin: 0; color: var(--muted); font-size: 15px; }
+    footer { margin-top: 64px; color: var(--muted); font-size: 14px; }
+    footer a { color: var(--muted); }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="brand"><img src="icon.png" alt="" />OmniDesk</div>
+    <h1>Every screen you own,<br />on one desk.</h1>
+    <p class="lead">See all your computers live, side by side. Click one and your keyboard and mouse work on it. Copy on one, paste on another.</p>
+    <div class="dl">
+      <a href="https://github.com/Aristotlev/omnidesk/releases/latest/download/OmniDesk-Windows.exe">Download for Windows</a>
+      <a class="alt" href="https://github.com/Aristotlev/omnidesk/releases/latest/download/OmniDesk-Mac.dmg">Download for Mac</a>
+      <a class="alt" href="https://github.com/Aristotlev/omnidesk/releases/latest/download/OmniDesk-Linux.AppImage">Download for Linux</a>
+    </div>
+    <p class="small">Free. Windows 10/11, macOS 11 or later, Linux. Updates itself.</p>
+    <div class="grid">
+      <div class="card"><h3>All screens, live</h3><p>Every paired computer and every monitor it has, on one page.</p></div>
+      <div class="card"><h3>Control any of them</h3><p>Click a screen. Your mouse, keyboard and scroll wheel now work there.</p></div>
+      <div class="card"><h3>One clipboard</h3><p>Copy text on your PC and paste it on your Mac.</p></div>
+      <div class="card"><h3>Private</h3><p>Devices talk directly on your own network, encrypted. No accounts, no servers.</p></div>
+    </div>
+    <footer>
+      <a href="https://github.com/Aristotlev/omnidesk">Source on GitHub</a> · <a href="https://github.com/Aristotlev/omnidesk/issues">Report a problem</a>
+    </footer>
+  </main>
+</body>
+</html>

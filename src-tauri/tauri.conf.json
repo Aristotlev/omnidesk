@@ -1,0 +1,62 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "OmniDesk",
+  "version": "../package.json",
+  "identifier": "app.omnidesk",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "OmniDesk",
+        "width": 1320,
+        "height": 860,
+        "minWidth": 900,
+        "minHeight": 620,
+        "center": true,
+        "visible": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "nsis"
+    ],
+    "publisher": "Aristotle",
+    "category": "Utility",
+    "shortDescription": "Every screen you own on one desk",
+    "longDescription": "See the screens of all your computers side by side, control any of them from the one you are sitting at, and copy on one and paste on another.",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "createUpdaterArtifacts": true,
+    "macOS": {
+      "signingIdentity": "-",
+      "minimumSystemVersion": "11.0"
+    }
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEY1RDI0NEZGNUFFNzBGNTUKUldSVkQrZGEvMFRTOVIvY0NkNncxZGpZaFVxSkZVY1hjS1NwTUdEZDhjT2FKNDlIWHpwd01sT3oK",
+      "endpoints": [
+        "https://github.com/Aristotlev/omnidesk/releases/latest/download/latest.json"
+      ],
+      "windows": {
+        "installMode": "passive"
+      }
+    }
+  }
+}

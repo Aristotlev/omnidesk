@@ -1,0 +1,18 @@
+[workspace]
+resolver = "2"
+members = ["crates/*"]
+# The app shell has its own lockfile and target folder, exactly like OmniStore and OmniBoost.
+exclude = ["src-tauri"]
+
+[workspace.package]
+version = "0.1.0"
+license = "MIT"
+edition = "2021"
+authors = ["Aristotle"]
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = 3
+panic = "abort"
+strip = true

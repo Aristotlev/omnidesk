@@ -1,0 +1,28 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+/target/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.sw?
+
+# OmniDesk build helpers
+build-log.txt
+build-error.txt
+src-tauri/gen/
+# Update signing key: never commit. Back it up somewhere safe.
+release-keys/
+
+# Installers the publish script downloads next to the project
+*-setup.exe

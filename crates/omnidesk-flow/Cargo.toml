@@ -1,0 +1,10 @@
+[package]
+name = "omnidesk-flow"
+version.workspace = true
+license = "MIT"
+edition.workspace = true
+authors.workspace = true
+
+[dependencies]
+omnidesk-proto = { version = "0.1.0", path = "../omnidesk-proto" }
+serde = { version = "1.0.229", features = ["derive"] }
